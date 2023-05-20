@@ -55,6 +55,7 @@ def preprocess(df_name):
     train_2["university"] = list(map(is_the_same, train_2["university_x"], train_2["university_y"]))
     train_2["school"] = list(map(is_the_same, train_2["school_y"], train_2["school_x"]))
     train_2["gen"] = list(map(age_eps, train_2["age_dist"]))
+    train_2 = train_2.groupby('ego_id').size().reset_index().rename(columns={0:"sum"}).merge(train_2, on="ego_id")
     train_3 = train_2.drop(["city_id_x", "city_id_y", "university_x", "university_y", "sex_x", "sex_y", "school_x", "school_y", "age_x", "age_y", "u_y"], axis=1)
     del train_2
     gc.collect()
