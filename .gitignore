@@ -1,1 +1,4 @@
 *.csv
+main_old.ipynb
+catboost_info 
+.DS_Store
